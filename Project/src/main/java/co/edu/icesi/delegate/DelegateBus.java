@@ -1,5 +1,8 @@
 package co.edu.icesi.delegate;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -11,28 +14,50 @@ import co.edu.icesi.model.Tmio1Bus;
 import co.edu.icesi.rest.TransactionBody;
 
 @Component
-public class DelegateBus {
+public class DelegateBus implements IDelegateBus {
 
+	RestTemplate restTemplate;
+	final String SERVER = "http://localhost:8080/";	
 	
-	private final static String REST_URI = "localhost:8080/";
-	private RestTemplate restTemplate = null;
+	public DelegateBus() {
+		restTemplate = new RestTemplate();
+	}
 	
-	public Tmio1Bus findById (Tmio1Bus tmio1Bus) {
+	
+	@Override
+	public Iterable<Tmio1Bus> getTmioBuses() {
 		
-		ResponseEntity response = null;
-		TransactionBody transaction;
-		/*HttpEntity request = new HttpEntity(transaction);
-		
-		
+		Tmio1Bus[] buses = restTemplate.getForObject(SERVER + "buses", Tmio1Bus[].class);
+
+		List<Tmio1Bus> at;
 		try {
-			response = restTemplate.exchange(REST_URI+ "api/buses/consult", HttpMethod.GET, request) {
-			});
-			
+			at = Arrays.asList(buses);
+			return at;
 		} catch (Exception e) {
-			// TODO: handle exception
-		}*/
-		
-		return null;
+			e.printStackTrace();
+			return null;
+		}
 		
 	}
+
+	@Override
+	public Tmio1Bus getTmioBus(int id) {
+		Tmio1Bus bus = restTemplate.getForObject( SERVER + "buses/" + id, Tmio1Bus.class);
+		return bus;
+	}
+	@Override
+	public Tmio1Bus addTmioBus(Tmio1Bus newTmioBus) {
+		Tmio1Bus bus = restTemplate.postForEntity(SERVER + "buses",newTmioBus, Tmio1Bus.class).getBody();
+		return bus;
+	}
+
+	@Override
+	public void delTmioBus(Tmio1Bus tmioBus) {
+		restTemplate.delete(SERVER + "buses/" + tmioBus.getId());
+	}
+
+
+	
+	
+	
 }

@@ -50,6 +50,8 @@ public class BusController {
 				try {
 					service.save(tmio1Bus);
 				} catch (Exception  e) {
+					e.printStackTrace();
+					System.out.println(bindingResult.getAllErrors().get(0));
 					return "redirect:/error";
 				}
 			}

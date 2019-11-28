@@ -43,12 +43,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		
-		httpSecurity.authorizeRequests().antMatchers("/**").authenticated()
+		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/**").authenticated()
 		
 		.antMatchers("/servicios/**").hasAnyRole(UserType.operator.toString())
 		.antMatchers("/buses/**").hasRole(UserType.admin.toString())
 		.antMatchers("/conductores/**").hasRole(UserType.admin.toString())
 		.antMatchers("/rutas/**").hasRole(UserType.admin.toString())
+		.antMatchers("api/**").permitAll()
 		
 		.and()
 		

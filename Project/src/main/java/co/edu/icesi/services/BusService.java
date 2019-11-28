@@ -25,7 +25,7 @@ public class BusService {
 
 		if (bus == null) {
 			throw new BusNullException();
-		} else if (repository.findByPlaca(bus.getPlaca())!=null){
+		} else if (!repository.findByPlaca(bus.getPlaca()).isEmpty()){
 			throw new Exception();
 		}else if (bus.getTipo() == null || bus.getTipo().equals("")) {
 			throw new TipoNullException();
@@ -57,4 +57,9 @@ public class BusService {
 		return repository.findById(id);
 	}
 
+	public Tmio1Bus deleted(Tmio1Bus bus) {
+		repository.delete(bus);
+		return bus;
+	}
+	
 }

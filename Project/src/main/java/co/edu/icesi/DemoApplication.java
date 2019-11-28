@@ -34,7 +34,7 @@ public class DemoApplication {
 		return (args) -> {
 			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	        
-			/**
+			
 			UserApp user = new UserApp();			
 			user.setUsername("admin");
 			user.setPassword(passwordEncoder.encode("123"));
@@ -95,7 +95,7 @@ public class DemoApplication {
 			ruta.setHoraInicio(new BigDecimal(1));
 			ruta.setHoraFin(new BigDecimal(1000));
 			rutaRepository.save(ruta);
-			**/
+			
 		};
 	}
 }
