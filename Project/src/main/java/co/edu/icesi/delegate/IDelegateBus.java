@@ -1,5 +1,6 @@
 package co.edu.icesi.delegate;
 
+import co.edu.icesi.model.BusType;
 import co.edu.icesi.model.Tmio1Bus;
 
 public interface IDelegateBus {
@@ -13,5 +14,5 @@ public interface IDelegateBus {
 
 	public Tmio1Bus getTmioBus(int i);
 
-	
+	public BusType[] getType();
 }

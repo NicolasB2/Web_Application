@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import co.edu.icesi.model.BusType;
 import co.edu.icesi.model.Tmio1Bus;
 import co.edu.icesi.rest.TransactionBody;
 
@@ -17,7 +18,7 @@ import co.edu.icesi.rest.TransactionBody;
 public class DelegateBus implements IDelegateBus {
 
 	RestTemplate restTemplate;
-	final String SERVER = "http://localhost:8080/";	
+	final String SERVER = "http://localhost:8080/api/";	
 	
 	public DelegateBus() {
 		restTemplate = new RestTemplate();
@@ -29,7 +30,7 @@ public class DelegateBus implements IDelegateBus {
 		
 		Tmio1Bus[] buses = restTemplate.getForObject(SERVER + "buses", Tmio1Bus[].class);
 
-		List<Tmio1Bus> at;
+		List<Tmio1Bus> at = null;
 		try {
 			at = Arrays.asList(buses);
 			return at;
@@ -54,6 +55,12 @@ public class DelegateBus implements IDelegateBus {
 	@Override
 	public void delTmioBus(Tmio1Bus tmioBus) {
 		restTemplate.delete(SERVER + "buses/" + tmioBus.getId());
+	}
+
+
+	@Override
+	public BusType[] getType() {
+		return BusType.values();
 	}
 
 

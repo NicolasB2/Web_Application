@@ -18,7 +18,7 @@ public class RestControllerBus implements IRestControllerBus {
 	@Autowired
 	private BusService busService;
 
-	@GetMapping("api/buses")
+	@GetMapping("/api/buses")
 	public Iterable<Tmio1Bus> getBuses() {
 		return busService.findAll();
 	}
