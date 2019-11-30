@@ -49,4 +49,10 @@ public class ConductorService {
 		return repository.findById(cedula);
 	}
 	
+	
+	public Tmio1Conductore deleted(Tmio1Conductore conductor) {
+		
+		repository.delete(conductor);
+		return conductor;
+	}
 }

@@ -70,5 +70,11 @@ public class RutaService {
 		return repository.findById(id);
 	}
 	
-
+	public Tmio1Ruta deleted(Tmio1Ruta ruta) {
+		repository.delete(ruta);
+		return ruta;
+	}
+	
+	
+	
 }
