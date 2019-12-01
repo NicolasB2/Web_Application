@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import co.edu.icesi.DemoApplication;
+import co.edu.icesi.Application;
 import co.edu.icesi.dao.BusesDao;
 import co.edu.icesi.dao.ConductoresDao;
 import co.edu.icesi.dao.RutasDao;
@@ -31,7 +31,7 @@ import co.edu.icesi.model.Tmio1Ruta;
 import co.edu.icesi.model.Tmio1Servicio;
 import co.edu.icesi.model.Tmio1ServicioPK;
 
-@SpringBootTest(classes = DemoApplication.class)
+@SpringBootTest(classes = Application.class)
 @RunWith(SpringRunner.class)
 @Rollback(true)
 public class ServiciosDaoTest {

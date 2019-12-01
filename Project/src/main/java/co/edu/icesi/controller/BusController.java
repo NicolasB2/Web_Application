@@ -51,7 +51,6 @@ public class BusController {
 			} else {
 				try {
 					delegateBus.addTmioBus(tmio1Bus);
-					//service.save(tmio1Bus);
 				} catch (Exception  e) {
 					e.printStackTrace();
 					System.out.println(bindingResult.getAllErrors().get(0));

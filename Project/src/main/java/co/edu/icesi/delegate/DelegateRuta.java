@@ -3,11 +3,13 @@ package co.edu.icesi.delegate;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import co.edu.icesi.model.Tmio1Bus;
 import co.edu.icesi.model.Tmio1Ruta;
 
+@Component
 public class DelegateRuta implements IDelegateRuta {
 
 	RestTemplate restTemplate;
@@ -34,13 +36,13 @@ public class DelegateRuta implements IDelegateRuta {
 	}
 
 	@Override
-	public Tmio1Ruta getTmioRuta(Integer id) {
+	public Tmio1Ruta getTmioRuta(int id){
 		Tmio1Ruta ruta = restTemplate.getForObject( SERVER + "ruta/" + id, Tmio1Ruta.class);
 		return ruta;
 	}
 	
 	@Override
-	public Tmio1Ruta addTmioRuta(Tmio1Ruta newTmioRuta) {
+	public Tmio1Ruta addTmioRuta(Tmio1Ruta newTmioRuta) throws Exception {
 		Tmio1Ruta ruta =  restTemplate.postForEntity( SERVER + "ruta/", newTmioRuta, Tmio1Ruta.class).getBody();
 		return ruta;
 	}

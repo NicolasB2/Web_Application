@@ -35,9 +35,9 @@ public class ServicioService {
 			throw new ConductorNullException();
 		} else if (servicio.getTmio1Ruta() == null) {
 			throw new RutaNullException();
-		} else if (servicio.getTmioFechaInicio().compareTo(servicio.getTmioFechaFin()) == 1) {
+		} else if (servicio.getTmioFechaInicio().compareTo(servicio.getTmioFechaFin()) > 0) {
 			throw new FechasNoConsistentesException();
-		} else if (servicio.getTmio1Conductore().getFechaContratacion().compareTo(servicio.getTmioFechaInicio()) == 1) {
+		} else if (servicio.getTmio1Conductore().getFechaContratacion().compareTo(servicio.getTmioFechaInicio()) >0) {
 			throw new FechasNoConsistentesException();
 		} else {
 			Tmio1ServicioPK srvPK = new Tmio1ServicioPK();
@@ -63,8 +63,9 @@ public class ServicioService {
 		return repository.findById(id);
 	}
 
-	public void delete(Tmio1Servicio servicio) {
+	public Tmio1Servicio delete(Tmio1Servicio servicio) {
 		repository.delete(servicio);
+		return servicio;
 	}
 
 	public Iterable<Tmio1Servicio> filter(LocalDate inicio, LocalDate fin) {

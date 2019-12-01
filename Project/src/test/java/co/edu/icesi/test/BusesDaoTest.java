@@ -17,12 +17,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import co.edu.icesi.DemoApplication;
+import co.edu.icesi.Application;
 import co.edu.icesi.dao.BusesDao;
 import co.edu.icesi.model.BusType;
 import co.edu.icesi.model.Tmio1Bus;
 
-@SpringBootTest(classes = DemoApplication.class)
+@SpringBootTest(classes = Application.class)
 @RunWith(SpringRunner.class)
 @Rollback(true)
 public class BusesDaoTest {

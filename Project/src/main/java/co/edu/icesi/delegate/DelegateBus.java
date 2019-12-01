@@ -17,18 +17,34 @@ import co.edu.icesi.rest.TransactionBody;
 @Component
 public class DelegateBus implements IDelegateBus {
 
-	RestTemplate restTemplate;
-	final String SERVER = "http://localhost:8080/api/";	
+	private RestTemplate restTemplate;
+	public final static String SERVER = "http://localhost:8080/api/";	
+	
 	
 	public DelegateBus() {
 		restTemplate = new RestTemplate();
 	}
 	
+
+	@Override
+	public void addTmioBus(Tmio1Bus newTmioBus) throws Exception {
+		restTemplate.postForEntity(SERVER + "buses",newTmioBus, Tmio1Bus.class);
+	}
 	
+	@Override
+	public Tmio1Bus getTmioBus(int id) {
+		return restTemplate.getForObject( SERVER + "buses" + id, Tmio1Bus.class);
+	}
+	
+	@Override
+	public void delTmioBus(int id) {
+		restTemplate.delete(SERVER + "buses/" + id);
+	}
+ 
 	@Override
 	public Iterable<Tmio1Bus> getTmioBuses() {
 		
-		Tmio1Bus[] buses = restTemplate.getForObject(SERVER + "buses", Tmio1Bus[].class);
+		Tmio1Bus[] buses = restTemplate.getForObject(SERVER + "buses/", Tmio1Bus[].class);
 
 		List<Tmio1Bus> at = null;
 		try {
@@ -42,27 +58,9 @@ public class DelegateBus implements IDelegateBus {
 	}
 
 	@Override
-	public Tmio1Bus getTmioBus(int id) {
-		Tmio1Bus bus = restTemplate.getForObject( SERVER + "buses/" + id, Tmio1Bus.class);
-		return bus;
-	}
-	@Override
-	public Tmio1Bus addTmioBus(Tmio1Bus newTmioBus) {
-		Tmio1Bus bus = restTemplate.postForEntity(SERVER + "buses",newTmioBus, Tmio1Bus.class).getBody();
-		return bus;
-	}
-
-	@Override
-	public void delTmioBus(Tmio1Bus tmioBus) {
-		restTemplate.delete(SERVER + "buses/" + tmioBus.getId());
-	}
-
-
-	@Override
 	public BusType[] getType() {
-		return BusType.values();
+		return restTemplate.getForEntity(SERVER + "buses/types", BusType[].class).getBody();
 	}
-
 
 	
 	

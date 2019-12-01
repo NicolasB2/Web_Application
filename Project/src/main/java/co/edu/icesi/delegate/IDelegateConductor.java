@@ -8,12 +8,11 @@ public interface IDelegateConductor {
 	
 	public Iterable<Tmio1Conductore> getTmioConductores();
 
-	public Tmio1Conductore addTmioConductor(Tmio1Conductore newTmioConductor);
+	public Tmio1Conductore addTmioConductor(Tmio1Conductore newTmioConductor) throws Exception;
 
 	public void delTmioConductor(Tmio1Conductore newTmioConductor);
 
-	public Tmio1Conductore getTmioCondutor(int id);
+	public Tmio1Conductore getTmioCondutor(String id);
 
-	//public BusType[] getType();
 	
 }

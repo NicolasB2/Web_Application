@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import co.edu.icesi.delegate.DelegateBus;
+import co.edu.icesi.delegate.DelegateConductor;
+import co.edu.icesi.delegate.DelegateRuta;
+import co.edu.icesi.delegate.DelegateServicio;
 import co.edu.icesi.exceptions.BusNullException;
 import co.edu.icesi.exceptions.ConductorNullException;
 import co.edu.icesi.exceptions.FechasNoConsistentesException;
@@ -28,32 +32,32 @@ import co.edu.icesi.services.ServicioService;
 @Controller
 public class ServicioController {
 
-	private ServicioService service;
-	private BusService busService;
-	private RutaService rutaService;
-	private ConductorService conductorService;
+	private DelegateServicio delegateService;
+	private DelegateBus delegateBus;
+	private DelegateRuta delegateRuta;
+	private DelegateConductor delegateConductor;
 
 	@Autowired
-	public ServicioController(ServicioService service, BusService busService, RutaService rutaService,
-			ConductorService conductorService) {
-		this.service = service;
-		this.busService = busService;
-		this.conductorService = conductorService;
-		this.rutaService = rutaService;
+	public ServicioController(DelegateServicio delegateService, DelegateBus delegateBus, DelegateConductor delegateConductor,
+			DelegateRuta delegateRuta) {
+		this.delegateService = delegateService;
+		this.delegateBus = delegateBus;
+		this.delegateConductor = delegateConductor;
+		this.delegateRuta = delegateRuta;
 
 	}
 
 	@RequestMapping(value = "/servicios", method = RequestMethod.GET)
 	public String servicios(Model model) {
-		model.addAttribute("servicios", service.findAll());
+		model.addAttribute("servicios", delegateService.getTmioServicios());
 		return "servicios/index";
 	}
 
 	@GetMapping("/servicios/add-servicio")
 	public String busesAdd(Model model) {
-		model.addAttribute("buses", busService.findAll());
-		model.addAttribute("conductores", conductorService.findAll());
-		model.addAttribute("rutas", rutaService.findAll());
+		model.addAttribute("buses", delegateBus.getTmioBuses());
+		model.addAttribute("conductores", delegateConductor.getTmioConductores());
+		model.addAttribute("rutas", delegateRuta.getTmioRutas());
 		model.addAttribute("tmio1Servicio", new Tmio1Servicio());
 		return "servicios/add-servicio";
 	}
@@ -64,21 +68,26 @@ public class ServicioController {
 		if (!action.equals("Cancel")) {
 			if (bindingResult.hasErrors()) {
 				
-				model.addAttribute("buses", busService.findAll());
-				model.addAttribute("conductores", conductorService.findAll());
-				model.addAttribute("rutas", rutaService.findAll());
+				model.addAttribute("buses", delegateBus.getTmioBuses());
+				model.addAttribute("conductores", delegateConductor.getTmioConductores());
+				model.addAttribute("rutas", delegateRuta.getTmioRutas());
+				
+				System.out.println(bindingResult.getAllErrors().get(0));
+				
 				return "servicios/add-servicio";
 			} else
+				
 				try {
-					service.save(tmio1Servicio);
-				} catch (BusNullException | ConductorNullException | RutaNullException | FechasNoConsistentesException
-						| ServicioNullException e) {
+					delegateService.addTmioServicio(tmio1Servicio);
+				} catch (Exception  e) {
+					e.printStackTrace();
+					System.out.println(bindingResult.getAllErrors().get(0));
 					return "redirect:/error";
 				}
 
-			model.addAttribute("buses", busService.findAll());
-			model.addAttribute("conductores", conductorService.findAll());
-			model.addAttribute("rutas", rutaService.findAll());
+			model.addAttribute("buses", delegateBus.getTmioBuses());
+			model.addAttribute("conductores", delegateConductor.getTmioConductores());
+			model.addAttribute("rutas", delegateRuta.getTmioRutas());
 
 		}
 		return "redirect:/servicios";
@@ -87,20 +96,20 @@ public class ServicioController {
 	@GetMapping("/servicios/update-servicio/{id_hash}")
 	public String showUpdateApps(@PathVariable("id_hash") Integer id_hash, Model model) {
 
-		Iterable<Tmio1Servicio> servicios = service.findAll();
+		Iterable<Tmio1Servicio> servicios = delegateService.getTmioServicios();
 		Tmio1Servicio servicio = null;
 
 		for (Tmio1Servicio ser : servicios) {
 			if (ser.getId_hash().compareTo(id_hash) == 0) {
-				service.delete(ser);
+				delegateService.delTmioServicio(ser);
 				servicio = ser;
 				break;
 			}
 		}
 
-		model.addAttribute("buses", busService.findAll());
-		model.addAttribute("conductores", conductorService.findAll());
-		model.addAttribute("rutas", rutaService.findAll());
+		model.addAttribute("buses", delegateBus.getTmioBuses());
+		model.addAttribute("conductores", delegateConductor.getTmioConductores());
+		model.addAttribute("rutas", delegateRuta.getTmioRutas());
 
 		model.addAttribute("tmio1Servicio", servicio);
 		return "servicios/update-servicio";
@@ -115,16 +124,19 @@ public class ServicioController {
 				return "/servicios/update-servicio";
 			}
 		}
+		
 		try {
-			service.save(tmio1Servicio);
-		} catch (BusNullException | ConductorNullException | RutaNullException | FechasNoConsistentesException
-				| ServicioNullException e) {
+			delegateService.addTmioServicio(tmio1Servicio);
+		} catch (Exception  e) {
+			e.printStackTrace();
+			System.out.println(bindingResult.getAllErrors().get(0));
 			return "redirect:/error";
 		}
 
-		model.addAttribute("buses", busService.findAll());
-		model.addAttribute("conductores", conductorService.findAll());
-		model.addAttribute("rutas", rutaService.findAll());
+		model.addAttribute("buses", delegateBus.getTmioBuses());
+		model.addAttribute("conductores", delegateConductor.getTmioConductores());
+		model.addAttribute("rutas", delegateRuta.getTmioRutas());
+
 
 		return "redirect:/servicios";
 	}
@@ -139,9 +151,10 @@ public class ServicioController {
 	@PostMapping("/servicios/filter-servicio")
 	public String showConsultForm2(@ModelAttribute Tmio1Servicio tmio1Servicio, Model model) {
 
-		Iterable<Tmio1Servicio> r = service.filter(tmio1Servicio.getTmioFechaInicio(), tmio1Servicio.getTmioFechaFin());
+		/**
+		Iterable<Tmio1Servicio> r = delegateService.filter(tmio1Servicio.getTmioFechaInicio(), tmio1Servicio.getTmioFechaFin());
 		model.addAttribute("servicios", r);
-
+		**/
 		return "servicios/index";
 	}
 

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import co.edu.icesi.delegate.DelegateRuta;
 import co.edu.icesi.exceptions.FechaInvalidaException;
 import co.edu.icesi.exceptions.FechaNullException;
 import co.edu.icesi.exceptions.FechasNoConsistentesException;
@@ -26,17 +27,18 @@ import co.edu.icesi.services.RutaService;
 @Controller
 public class RutasController {
 
-	private RutaService service; 
+	private DelegateRuta delegateRuta; 
+	
 	
 	@Autowired
-	public RutasController(RutaService service) {
-		this.service= service;
+	public RutasController(DelegateRuta delegateRuta) {
+		this.delegateRuta= delegateRuta;
 	}
 	
 
 	@RequestMapping(value = "/rutas", method = RequestMethod.GET)
 	public String rutas(Model model) {
-		model.addAttribute("rutas", service.findAll() );
+		model.addAttribute("rutas", delegateRuta.getTmioRutas() );
 		return "rutas/index";
 	}
 	
@@ -53,12 +55,14 @@ public class RutasController {
 			if (bindingResult.hasErrors()) {
 				return "rutas/add-ruta";
 			} else {
+				
 				try {
-					service.save(tmio1Ruta);
-				} catch (RutaNullException | FechasNoConsistentesException | HorasNoConsistentesException
-						| FechaNullException | HoraNullException | FechaInvalidaException | HoraInvalidaException e) {
+					delegateRuta.addTmioRuta(tmio1Ruta);
+				} catch (Exception e) {	
+					e.printStackTrace();
+					System.out.println(bindingResult.getAllErrors().get(0));
 					return "redirect:/error";
-				}
+				}				
 			}	
 		}
 		return "redirect:/rutas";
@@ -74,7 +78,7 @@ public class RutasController {
 	@PostMapping("/rutas/consult-ruta")
 	public String showConsultForm2(@ModelAttribute Tmio1Ruta tmio1Ruta, Model model) {
 
-		Tmio1Ruta r = service.findById(tmio1Ruta.getId());
+		Tmio1Ruta r = delegateRuta.getTmioRuta(tmio1Ruta.getId());
 		if (r == null) {
 			
 		}

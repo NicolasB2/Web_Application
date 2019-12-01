@@ -3,10 +3,12 @@ package co.edu.icesi.delegate;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import co.edu.icesi.model.Tmio1Conductore;
 
+@Component
 public class DelegateConductor implements IDelegateConductor {
 
 	
@@ -35,13 +37,13 @@ public class DelegateConductor implements IDelegateConductor {
 	}
 
 	@Override
-	public Tmio1Conductore getTmioCondutor(int id) {
+	public Tmio1Conductore getTmioCondutor(String id) {
 		Tmio1Conductore conductor = restTemplate.getForObject(SERVER + "conductores/" + id, Tmio1Conductore.class);
 		return conductor;
 	}
 	
 	@Override
-	public Tmio1Conductore addTmioConductor(Tmio1Conductore newTmioConductor) {
+	public Tmio1Conductore addTmioConductor(Tmio1Conductore newTmioConductor) throws Exception{
 		Tmio1Conductore conductor = restTemplate.postForEntity(SERVER + "conductores", newTmioConductor, Tmio1Conductore.class).getBody();
 		return conductor;
 	}

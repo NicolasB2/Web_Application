@@ -1,5 +1,7 @@
 package co.edu.icesi.rest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,21 +16,21 @@ import co.edu.icesi.services.ConductorService;
 @RestController
 public class RestControllerConductor implements IRestControllerConductor{
 
-	
+	@Autowired
 	private ConductorService conductorService;
 	
 	
-	@GetMapping("/api/conductores")
+	@GetMapping("api/conductores")
 	public Iterable<Tmio1Conductore> getConductores() {
 		return conductorService.findAll();
 	}
 
-	@PostMapping("/api/conductores/{id}")
+	@PostMapping("api/conductores/{id}")
 	public Tmio1Conductore getConductor(String cedula) {
 		return conductorService.findById(cedula);
 	}
 
-	@PostMapping("/api/conductores")
+	@PostMapping("api/conductores")
 	public Tmio1Conductore addConductor(Tmio1Conductore conductor) {
 		
 		try {
@@ -41,7 +43,7 @@ public class RestControllerConductor implements IRestControllerConductor{
 		return conductor;
 	}
 
-	@GetMapping("api/conductores/{id}")
+	@DeleteMapping("api/conductores/{id}")
 	public Tmio1Conductore delConductor(String cedula) {
 		return conductorService.deleted(conductorService.findById(cedula));
 	}

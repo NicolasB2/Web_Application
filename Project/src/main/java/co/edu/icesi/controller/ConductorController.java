@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import co.edu.icesi.delegate.DelegateBus;
+import co.edu.icesi.delegate.DelegateConductor;
 import co.edu.icesi.exceptions.ConductorNullException;
 import co.edu.icesi.exceptions.FechaNullException;
 import co.edu.icesi.exceptions.FechasNoConsistentesException;
@@ -23,16 +25,16 @@ import co.edu.icesi.services.ConductorService;
 @Controller
 public class ConductorController {
 
-	private ConductorService service;
+	private DelegateConductor delegateConductor;
 
 	@Autowired
-	public ConductorController(ConductorService service) {
-		this.service = service;
+	public ConductorController(DelegateConductor delegateConductor) {
+		this.delegateConductor = delegateConductor;
 	}
 
 	@RequestMapping(value = "/conductores", method = RequestMethod.GET)
 	public String conductores(Model model) {
-		model.addAttribute("conductores", service.findAll());
+		model.addAttribute("conductores", delegateConductor.getTmioConductores());
 		return "conductores/index";
 	}
 
@@ -52,12 +54,15 @@ public class ConductorController {
 				return "conductores/add-conductore";
 			}
 			else {
+				
 				try {
-					service.save(tmio1Conductore);
-				} catch (ConductorNullException | FechasNoConsistentesException | FechaNullException
-						| FormatoIncorrectoException e) {
+					delegateConductor.addTmioConductor(tmio1Conductore);
+				} catch (Exception  e) {
+					e.printStackTrace();
+					System.out.println(bindingResult.getAllErrors().get(0));
 					return "redirect:/error";
 				}
+				
 			}
 		}
 		return "redirect:/conductores";
@@ -76,7 +81,8 @@ public class ConductorController {
 	@PostMapping("/conductores/consult-conductore")
 	public String showConsultForm2(@ModelAttribute Tmio1Conductore tmio1Conductore, Model model) {
 
-		Tmio1Conductore c = service.findById(tmio1Conductore.getCedula());
+		
+		Tmio1Conductore c = delegateConductor.getTmioCondutor(tmio1Conductore.getCedula());
 		if (c == null) {
 			
 		}
