@@ -9,7 +9,7 @@ public interface IRestControllerConductor {
 	
 	public Tmio1Conductore getConductor (String cedula);
 	
-	public Tmio1Conductore addConductor(Tmio1Conductore conductor);
+	public Tmio1Conductore addConductor(Tmio1Conductore conductor)throws Exception;
 	
 	public Tmio1Conductore delConductor(String cedula);
 	

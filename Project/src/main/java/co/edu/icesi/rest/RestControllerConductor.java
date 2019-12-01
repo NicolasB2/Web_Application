@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.icesi.exceptions.ConductorNullException;
@@ -31,15 +32,8 @@ public class RestControllerConductor implements IRestControllerConductor{
 	}
 
 	@PostMapping("api/conductores")
-	public Tmio1Conductore addConductor(Tmio1Conductore conductor) {
-		
-		try {
-			conductorService.save(conductor);
-		} catch (ConductorNullException | FechasNoConsistentesException | FechaNullException
-				| FormatoIncorrectoException e) {
-			e.printStackTrace();
-		}
-		
+	public Tmio1Conductore addConductor(@RequestBody Tmio1Conductore conductor)throws Exception {
+		conductorService.save(conductor);
 		return conductor;
 	}
 

@@ -24,7 +24,6 @@ public class DelegateRuta implements IDelegateRuta {
 	public Iterable<Tmio1Ruta> getTmioRutas() {
 		
 		Tmio1Ruta[] rutas = restTemplate.getForObject(SERVER + "rutas", Tmio1Ruta[].class);
-		
 		List<Tmio1Ruta> at = null;
 		try {
 			at = Arrays.asList(rutas);
@@ -37,19 +36,19 @@ public class DelegateRuta implements IDelegateRuta {
 
 	@Override
 	public Tmio1Ruta getTmioRuta(int id){
-		Tmio1Ruta ruta = restTemplate.getForObject( SERVER + "ruta/" + id, Tmio1Ruta.class);
+		Tmio1Ruta ruta = restTemplate.getForObject( SERVER + "rutas" + id, Tmio1Ruta.class);
 		return ruta;
 	}
 	
 	@Override
 	public Tmio1Ruta addTmioRuta(Tmio1Ruta newTmioRuta) throws Exception {
-		Tmio1Ruta ruta =  restTemplate.postForEntity( SERVER + "ruta/", newTmioRuta, Tmio1Ruta.class).getBody();
+		Tmio1Ruta ruta =  restTemplate.postForEntity( SERVER + "rutas", newTmioRuta, Tmio1Ruta.class).getBody();
 		return ruta;
 	}
 
 	@Override
 	public void delTmioRuta(Tmio1Ruta tmioRuta) {
-		restTemplate.delete(SERVER + "rutas/" + tmioRuta.getId());
+		restTemplate.delete(SERVER + "rutas" + tmioRuta.getId());
 	}
 
 

@@ -8,7 +8,7 @@ public interface IDelegateConductor {
 	
 	public Iterable<Tmio1Conductore> getTmioConductores();
 
-	public Tmio1Conductore addTmioConductor(Tmio1Conductore newTmioConductor) throws Exception;
+	public void addTmioConductor(Tmio1Conductore newTmioConductor) throws Exception;
 
 	public void delTmioConductor(Tmio1Conductore newTmioConductor);
 

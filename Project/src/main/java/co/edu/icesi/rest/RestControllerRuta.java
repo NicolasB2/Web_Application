@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.icesi.exceptions.FechaInvalidaException;
 import co.edu.icesi.exceptions.FechaNullException;
@@ -15,6 +17,7 @@ import co.edu.icesi.exceptions.RutaNullException;
 import co.edu.icesi.model.Tmio1Ruta;
 import co.edu.icesi.services.RutaService;
 
+@RestController
 public class RestControllerRuta implements IRestControllerRuta {
 
 	
@@ -27,16 +30,9 @@ public class RestControllerRuta implements IRestControllerRuta {
 		return rutaService.findAll();
 	}
 
-	@PostMapping("api/buses")
-	public Tmio1Ruta addRuta(Tmio1Ruta ruta) {
-		
-		try {
-			rutaService.save(ruta);
-		} catch (RutaNullException | FechasNoConsistentesException | HorasNoConsistentesException | FechaNullException
-				| HoraNullException | FechaInvalidaException | HoraInvalidaException e) {
-			e.printStackTrace();
-		}
-		return ruta;
+	@PostMapping("api/rutas")
+	public Tmio1Ruta addRuta(@RequestBody Tmio1Ruta ruta) throws Exception {
+		return rutaService.save(ruta);
 	}
 
 	@DeleteMapping("api/rutas/{id}")
@@ -44,7 +40,7 @@ public class RestControllerRuta implements IRestControllerRuta {
 		return rutaService.deleted(rutaService.findById(id));
 	}
 
-	@GetMapping("api/buses/{id}")
+	@GetMapping("api/rutas/{id}")
 	public Tmio1Ruta getRuta(Integer id) {
 		return rutaService.findById(id);
 	}

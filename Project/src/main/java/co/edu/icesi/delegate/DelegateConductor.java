@@ -13,7 +13,7 @@ public class DelegateConductor implements IDelegateConductor {
 
 	
 	RestTemplate restTemplate;
-	final String SERVER = "http://localhost:8080/api/";	
+	public final static String SERVER = "http://localhost:8080/api/";	
 
 	public DelegateConductor() {
 		restTemplate = new RestTemplate();
@@ -38,19 +38,18 @@ public class DelegateConductor implements IDelegateConductor {
 
 	@Override
 	public Tmio1Conductore getTmioCondutor(String id) {
-		Tmio1Conductore conductor = restTemplate.getForObject(SERVER + "conductores/" + id, Tmio1Conductore.class);
+		Tmio1Conductore conductor = restTemplate.getForObject(SERVER + "conductores" + id, Tmio1Conductore.class);
 		return conductor;
 	}
 	
 	@Override
-	public Tmio1Conductore addTmioConductor(Tmio1Conductore newTmioConductor) throws Exception{
-		Tmio1Conductore conductor = restTemplate.postForEntity(SERVER + "conductores", newTmioConductor, Tmio1Conductore.class).getBody();
-		return conductor;
+	public void addTmioConductor(Tmio1Conductore newTmioConductor) throws Exception{
+		restTemplate.postForEntity(SERVER + "conductores", newTmioConductor, Tmio1Conductore.class);
 	}
 
 	@Override
 	public void delTmioConductor(Tmio1Conductore newTmioConductor) {
-		restTemplate.delete(SERVER + "conductores/" + newTmioConductor.getCedula());
+		restTemplate.delete(SERVER + "conductores" + newTmioConductor.getCedula());
 	}
 
 	
