@@ -19,32 +19,32 @@
 	<div th:switch="${apps}" class="container my-5">
 		<div class="row">
 			<div class="col-md-6">
-				<h2 th:case="null">Sistema Tmio</h2>
+				<h2 th:case="null">Sistema MIO</h2>
 
 
 				<div sec:authorize="hasRole('admin')" >
 					<p>
-						<a href="/buses/"><i class="fas fa-bus-alt ml-2"></i> Ir a Buses</a>
+						<a type="submit" href="/buses/" class="btn btn-primary"><i class="fas fa-bus-alt ml-2"></i> Ir a Buses</a>
 					</p>
 				</div>
 
 
 				<div sec:authorize="hasRole('admin')" >
 					<p>
-						<a href="/conductores/"><i class="fas fa-user-edit ml-2"></i>
+						<a type="submit" class="btn btn-primary" href="/conductores/"><i class="fas fa-user-edit ml-2"></i>
 							Ir a Conductores</a>
 					</p>
 
 				</div>
 				<div sec:authorize="hasRole('admin')" >
 					<p>
-						<a href="/rutas/"><i class="fas fa-map ml-2"></i> Ir a Rutas</a>
+						<a type="submit" class="btn btn-primary" href="/rutas/"><i class="fas fa-map ml-2"></i> Ir a Rutas</a>
 					</p>
 				</div>
 
 				<div sec:authorize="hasRole('operator')" >
 					<p>
-						<a href="/servicios/"><i class="fas fa-people-carry ml-2"></i>
+						<a type="submit" class="btn btn-primary" href="/servicios/"><i class="fas fa-people-carry ml-2"></i>
 							Ir a Servicios</a>
 					</p>
 				</div>
