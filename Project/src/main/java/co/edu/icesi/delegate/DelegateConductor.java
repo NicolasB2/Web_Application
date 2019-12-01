@@ -19,13 +19,11 @@ public class DelegateConductor implements IDelegateConductor {
 		restTemplate = new RestTemplate();
 	}
 	
-	
 	@Override
 	public Iterable<Tmio1Conductore> getTmioConductores() {
 		
 		Tmio1Conductore[] conductores = restTemplate.getForObject(SERVER + "conductores", Tmio1Conductore[].class);
 		List<Tmio1Conductore> at = null;
-		
 		
 		try {
 			at = Arrays.asList(conductores);
@@ -35,6 +33,11 @@ public class DelegateConductor implements IDelegateConductor {
 			return null;
 		}
 	}
+	
+	@Override
+	public Tmio1Conductore addTmioConductor(Tmio1Conductore newTmioConductor) throws Exception{
+		return restTemplate.postForEntity(SERVER + "conductores", newTmioConductor, Tmio1Conductore.class).getBody();
+	}
 
 	@Override
 	public Tmio1Conductore getTmioCondutor(String id) {
@@ -42,11 +45,6 @@ public class DelegateConductor implements IDelegateConductor {
 		return conductor;
 	}
 	
-	@Override
-	public void addTmioConductor(Tmio1Conductore newTmioConductor) throws Exception{
-		restTemplate.postForEntity(SERVER + "conductores", newTmioConductor, Tmio1Conductore.class);
-	}
-
 	@Override
 	public void delTmioConductor(Tmio1Conductore newTmioConductor) {
 		restTemplate.delete(SERVER + "conductores" + newTmioConductor.getCedula());

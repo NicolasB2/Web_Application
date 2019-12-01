@@ -8,7 +8,7 @@ public interface IDelegateBus {
 	
 	public Iterable<Tmio1Bus> getTmioBuses();
 
-	public void addTmioBus(Tmio1Bus newTmioBus) throws Exception;
+	public Tmio1Bus addTmioBus(Tmio1Bus newTmioBus) throws Exception;
 
 	public void delTmioBus(int id);
 

@@ -27,21 +27,6 @@ public class DelegateBus implements IDelegateBus {
 	
 
 	@Override
-	public void addTmioBus(Tmio1Bus newTmioBus) throws Exception {
-		restTemplate.postForEntity(SERVER + "buses",newTmioBus, Tmio1Bus.class);
-	}
-	
-	@Override
-	public Tmio1Bus getTmioBus(int id) {
-		return restTemplate.getForObject( SERVER + "buses" + id, Tmio1Bus.class);
-	}
-	
-	@Override
-	public void delTmioBus(int id) {
-		restTemplate.delete(SERVER + "buses/" + id);
-	}
- 
-	@Override
 	public Iterable<Tmio1Bus> getTmioBuses() {
 		
 		Tmio1Bus[] buses = restTemplate.getForObject(SERVER + "buses/", Tmio1Bus[].class);
@@ -56,7 +41,22 @@ public class DelegateBus implements IDelegateBus {
 		}
 		
 	}
+	
+	@Override
+	public Tmio1Bus addTmioBus(Tmio1Bus newTmioBus) throws Exception {
+		return restTemplate.postForEntity(SERVER + "buses",newTmioBus, Tmio1Bus.class).getBody();
+	}
 
+	@Override
+	public Tmio1Bus getTmioBus(int id) {
+		return restTemplate.getForObject( SERVER + "buses" + id, Tmio1Bus.class);
+	}
+	
+	@Override
+	public void delTmioBus(int id) {
+		restTemplate.delete(SERVER + "buses/" + id);
+	}
+	
 	@Override
 	public BusType[] getType() {
 		return restTemplate.getForEntity(SERVER + "buses/types", BusType[].class).getBody();
