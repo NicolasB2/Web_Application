@@ -3,6 +3,7 @@ package co.edu.icesi.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,19 +27,19 @@ public class RestControllerConductor implements IRestControllerConductor{
 		return conductorService.findAll();
 	}
 
-	@PostMapping("api/conductores/{id}")
-	public Tmio1Conductore getConductor(String cedula) {
-		return conductorService.findById(cedula);
-	}
-
 	@PostMapping("api/conductores")
 	public Tmio1Conductore addConductor(@RequestBody Tmio1Conductore conductor)throws Exception {
 		conductorService.save(conductor);
 		return conductor;
 	}
+	
+	@GetMapping("api/conductores/{id}")
+	public Tmio1Conductore getConductor(@PathVariable String id) {
+		return conductorService.findById(id);
+	}
 
 	@DeleteMapping("api/conductores/{id}")
-	public Tmio1Conductore delConductor(String cedula) {
+	public Tmio1Conductore delConductor(@PathVariable String cedula) {
 		return conductorService.deleted(conductorService.findById(cedula));
 	}
 

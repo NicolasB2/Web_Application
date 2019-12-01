@@ -25,25 +25,21 @@ public class RestControllerBus implements IRestControllerBus {
 		return busService.findAll();
 	}
 
-	
-	@GetMapping("api/buses/{id}")
-	public Tmio1Bus getBus(Integer id) {
-		return busService.findById(id);
-	}
-
-	
 	@PostMapping("api/buses")
 	public Tmio1Bus addBus( @RequestBody Tmio1Bus bus) throws Exception {
 		busService.save(bus);
 		return bus;
 	}
 	
-	
-	@DeleteMapping("api/buses/{id}")
-	public Tmio1Bus delBus(Integer id) {
-		return busService.deleted(busService.findById(id));
+	@GetMapping("api/buses/{id}")
+	public Tmio1Bus getBus(@PathVariable int id) {
+		return busService.findById(id);
 	}
 	
+	@DeleteMapping("api/buses/{id}")
+	public Tmio1Bus delBus(@PathVariable int id) {
+		return busService.deleted(busService.findById(id));
+	}
 	
 	@GetMapping("api/buses/types")
 	public BusType[] getTipoBus(){

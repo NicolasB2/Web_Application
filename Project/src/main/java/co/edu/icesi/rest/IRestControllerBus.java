@@ -11,8 +11,8 @@ public interface IRestControllerBus {
 
 	public Iterable<Tmio1Bus> getBuses();
 
-	public Tmio1Bus getBus(Integer id);
-	public Tmio1Bus delBus(Integer id);
+	public Tmio1Bus getBus(int id);
+	public Tmio1Bus delBus(int id);
 	
 	public BusType[] getTipoBus();
 	/*public Iterable<Tmio1Bus> findAllByPlaca(String placa);*/

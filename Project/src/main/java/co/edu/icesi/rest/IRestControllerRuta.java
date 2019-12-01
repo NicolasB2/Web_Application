@@ -9,9 +9,9 @@ public interface IRestControllerRuta {
 
 	public Tmio1Ruta addRuta(Tmio1Ruta ruta) throws Exception;
 
-	public Tmio1Ruta delRuta(Integer id);
+	public Tmio1Ruta delRuta(int id);
 	
-	public Tmio1Ruta getRuta(Integer id);
+	public Tmio1Ruta getRuta(int id);
 
 	
 	

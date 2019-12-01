@@ -49,7 +49,7 @@ public class DelegateBus implements IDelegateBus {
 
 	@Override
 	public Tmio1Bus getTmioBus(int id) {
-		return restTemplate.getForObject( SERVER + "buses" + id, Tmio1Bus.class);
+		return restTemplate.getForObject( SERVER + "buses/" + id, Tmio1Bus.class);
 	}
 	
 	@Override

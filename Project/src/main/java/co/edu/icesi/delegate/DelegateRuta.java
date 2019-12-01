@@ -13,7 +13,7 @@ import co.edu.icesi.model.Tmio1Ruta;
 public class DelegateRuta implements IDelegateRuta {
 
 	RestTemplate restTemplate;
-	final String SERVER = "http://localhost:8080/api/";		
+	public final static String SERVER = "http://localhost:8080/api/";		
 	
 	public DelegateRuta() {
 		restTemplate = new RestTemplate(); 
@@ -42,8 +42,7 @@ public class DelegateRuta implements IDelegateRuta {
 
 	@Override
 	public Tmio1Ruta getTmioRuta(int id){
-		Tmio1Ruta ruta = restTemplate.getForObject( SERVER + "rutas" + id, Tmio1Ruta.class);
-		return ruta;
+		return restTemplate.getForObject( SERVER + "rutas/" + id, Tmio1Ruta.class);
 	}
 	
 	@Override

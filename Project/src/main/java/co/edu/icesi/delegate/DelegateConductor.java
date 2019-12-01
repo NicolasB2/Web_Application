@@ -41,8 +41,7 @@ public class DelegateConductor implements IDelegateConductor {
 
 	@Override
 	public Tmio1Conductore getTmioCondutor(String id) {
-		Tmio1Conductore conductor = restTemplate.getForObject(SERVER + "conductores" + id, Tmio1Conductore.class);
-		return conductor;
+		return restTemplate.getForObject(SERVER + "conductores/" + id, Tmio1Conductore.class);
 	}
 	
 	@Override
