@@ -10,6 +10,5 @@ public interface IRestControllerSitio {
 	
 	public Tmio1Sitio getSitio(long id);
 	public Tmio1Sitio delSitio(long id);
-	
-	
+
 }

@@ -47,6 +47,7 @@ public class Application {
 			user2.setType(UserType.operator);
 			userRepository.save(user2);
 			
+			/*
 			Tmio1Bus bus = new Tmio1Bus();
 			bus.setCapacidad(new BigDecimal(50));
 			bus.setTipo(BusType.T);
@@ -95,7 +96,7 @@ public class Application {
 			ruta.setHoraInicio(new BigDecimal(1));
 			ruta.setHoraFin(new BigDecimal(1000));
 			rutaRepository.save(ruta);
-			
+			*/
 		};
 	}
 }

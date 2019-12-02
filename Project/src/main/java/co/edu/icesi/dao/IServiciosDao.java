@@ -12,4 +12,5 @@ public interface IServiciosDao {
 	public void delete(Tmio1Servicio entity);
 	public Tmio1Servicio findById(Tmio1ServicioPK id);
 	public List<Tmio1Servicio> findAll();
+	
 }

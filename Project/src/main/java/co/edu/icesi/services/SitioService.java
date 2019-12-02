@@ -1,6 +1,7 @@
 package co.edu.icesi.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import co.edu.icesi.dao.BusesDao;
 import co.edu.icesi.dao.SitiosDao;
@@ -8,6 +9,7 @@ import co.edu.icesi.model.BusType;
 import co.edu.icesi.model.Tmio1Bus;
 import co.edu.icesi.model.Tmio1Sitio;
 
+@Service
 public class SitioService {
 	
 	@Autowired

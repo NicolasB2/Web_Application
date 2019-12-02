@@ -2,6 +2,8 @@ package co.edu.icesi.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+
 import java.util.List;
 
 
@@ -20,8 +22,10 @@ public class Tmio1Sitio implements Serializable {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TMIO1_SITIOS_ID_GENERATOR")
 	private long id;
 
+	@NotBlank
 	private String descripcion;
 
+	@NotBlank
 	private String nombre;
 
 	//bi-directional many-to-one association to Tmio1ServiciosSitio
