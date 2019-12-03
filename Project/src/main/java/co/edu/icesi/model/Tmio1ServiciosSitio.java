@@ -22,6 +22,8 @@ public class Tmio1ServiciosSitio implements Serializable {
 	private BigDecimal horaReal;
 
 	private String realizado;
+	
+	private Integer id_hash;
 
 	//bi-directional many-to-one association to Tmio1Bus
 	@ManyToOne
@@ -102,4 +104,13 @@ public class Tmio1ServiciosSitio implements Serializable {
 		this.tmio1Sitio = tmio1Sitio;
 	}
 
+	public Integer getId_hash() {
+		return id_hash;
+	}
+
+	public void setId_hash(Integer id_hash) {
+		this.id_hash = id_hash;
+	}
+	
+	
 }

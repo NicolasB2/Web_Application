@@ -17,12 +17,12 @@ import co.edu.icesi.model.Tmio1Bus;
 import co.edu.icesi.model.Tmio1SitiosRuta;
 
 @Controller
-public class SitioRutaController {
+public class SitiosRutaController {
 
 	private DelegateSitiosRuta delegateSitiosRuta;
 	
 	@Autowired
-	public SitioRutaController(DelegateSitiosRuta delegateSitiosRuta) {
+	public SitiosRutaController(DelegateSitiosRuta delegateSitiosRuta) {
 		this.delegateSitiosRuta = delegateSitiosRuta;
 	}
 	
