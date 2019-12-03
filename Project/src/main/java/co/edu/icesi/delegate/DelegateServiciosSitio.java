@@ -17,7 +17,7 @@ public class DelegateServiciosSitio implements IDelegateServiciosSitio {
 	RestTemplate restTemplate;
 	public final static String SERVER = "http://localhost:8080/api/";
 	
-	public DelegateServiciosSitio(DelegateServiciosSitio delegateServiciosSitio) {
+	public DelegateServiciosSitio() {
 		restTemplate = new RestTemplate();
 	}
 	

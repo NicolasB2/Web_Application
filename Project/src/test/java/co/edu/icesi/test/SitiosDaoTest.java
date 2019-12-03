@@ -31,7 +31,6 @@ public class SitiosDaoTest {
 		Tmio1Sitio sitio = new Tmio1Sitio();
 		sitio.setNombre("Plaza");
 		sitio.setDescripcion("lugar de buena clase");
-		sitio.setId(3);
 		sitioDao.save(sitio);
 	}
 	
@@ -41,13 +40,13 @@ public class SitiosDaoTest {
 	
 		
 		Tmio1Sitio sitio = new Tmio1Sitio();
-		sitio.setId(3);
+		
 		sitio.setNombre("CAM");
 		sitio.setDescripcion("lugar de buena clase");
 		sitioDao.save(sitio);
 		
 		assertNotNull(sitioDao.findAll().get(0));
-		//assertEquals("Plaza", sitioDao.findAll().get(0).getNombre());
+		assertEquals("San Antonio", sitioDao.findAll().get(0).getNombre());
 		
 	}
 }

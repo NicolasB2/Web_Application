@@ -41,6 +41,25 @@
 						<a type="submit" class="btn btn-primary" href="/rutas/"><i class="fas fa-map ml-2"></i> Ir a Rutas</a>
 					</p>
 				</div>
+				
+				<div sec:authorize="hasRole('admin')" >
+					<p>
+						<a type="submit" class="btn btn-primary" href="/sitios/"><i class="fas fa-map ml-2"></i> Ir a Sitios</a>
+					</p>
+				</div>
+				
+				<div sec:authorize="hasRole('admin')" >
+					<p>
+						<a type="submit" class="btn btn-primary" href="/sitiosRutas/"><i class="fas fa-map ml-2"></i> Ir a Sitios Rutas</a>
+					</p>
+				</div>
+				
+				<div sec:authorize="hasRole('admin')" >
+					<p>
+						<a type="submit" class="btn btn-primary" href="/serviciosSitios/"><i class="fas fa-map ml-2"></i> Ir a Servicios Sitios</a>
+					</p>
+				</div>
+				
 
 				<div sec:authorize="hasRole('operator')" >
 					<p>

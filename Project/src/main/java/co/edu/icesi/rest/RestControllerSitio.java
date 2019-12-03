@@ -18,16 +18,17 @@ public class RestControllerSitio implements IRestControllerSitio {
 	@Autowired
 	private SitioService sitioService;
 
+	@GetMapping("api/sitios")
+	public Iterable<Tmio1Sitio> getSitios() {
+		return sitioService.findAll();
+	}
+
 	@PostMapping("api/sitios")
 	public Tmio1Sitio addSitio(@RequestBody Tmio1Sitio sitio) throws Exception {
 		sitioService.save(sitio);
 		return sitio;
 	}
 
-	@GetMapping("api/sitios")
-	public Iterable<Tmio1Sitio> getSitios() {
-		return sitioService.findAll();
-	}
 
 	@GetMapping("api/sitios/{id}")
 	public Tmio1Sitio getSitio(@PathVariable long id) {

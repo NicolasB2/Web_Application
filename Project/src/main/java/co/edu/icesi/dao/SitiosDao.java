@@ -4,20 +4,15 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
-import org.springframework.context.annotation.Scope;
+
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.sun.xml.internal.stream.Entity;
-
 import co.edu.icesi.model.Tmio1Sitio;
 
 
 
 @Repository
-@Transactional
-@Scope("singleton")
 public class SitiosDao implements ISitiosDao{
 
 	@PersistenceContext
@@ -25,26 +20,31 @@ public class SitiosDao implements ISitiosDao{
 	
 	
 	@Override
+	@Transactional
 	public void save(Tmio1Sitio entity) {
 		entityManager.persist(entity);
 	}
 
 	@Override
+	@Transactional
 	public void update(Tmio1Sitio entity) {
 		entityManager.merge(entity);
 	}
 
 	@Override
+	@Transactional
 	public void delete(Tmio1Sitio entity) {
 		entityManager.remove(entityManager.contains(entity)? entity : entityManager.merge(entity));		
 	}
 
 	@Override
+	@Transactional
 	public Tmio1Sitio findById(long id) {
 		return entityManager.find(Tmio1Sitio.class, id);
 	}
 
 	@Override
+	@Transactional
 	public List<Tmio1Sitio> findAll() {
 		String jpql = "Select a from Tmio1Sitio a";
 		return entityManager.createQuery(jpql).getResultList();

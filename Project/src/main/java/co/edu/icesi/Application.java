@@ -13,11 +13,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import co.edu.icesi.dao.IBusesDao;
 import co.edu.icesi.dao.IConductoresDao;
 import co.edu.icesi.dao.IRutasDao;
+import co.edu.icesi.dao.ISitiosDao;
 import co.edu.icesi.dao.IUserRepository;
 import co.edu.icesi.model.BusType;
 import co.edu.icesi.model.Tmio1Bus;
 import co.edu.icesi.model.Tmio1Conductore;
 import co.edu.icesi.model.Tmio1Ruta;
+import co.edu.icesi.model.Tmio1Sitio;
 import co.edu.icesi.model.UserApp;
 import co.edu.icesi.model.UserType;
 
@@ -30,7 +32,7 @@ public class Application {
 
 	@Bean
 	public CommandLineRunner demo(IUserRepository userRepository, IBusesDao busRepository, IConductoresDao conductorRepository,
-			IRutasDao rutaRepository) {
+			IRutasDao rutaRepository, ISitiosDao sitioRepository) {
 		return (args) -> {
 			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	        
@@ -47,7 +49,7 @@ public class Application {
 			user2.setType(UserType.operator);
 			userRepository.save(user2);
 			
-			/*
+			
 			Tmio1Bus bus = new Tmio1Bus();
 			bus.setCapacidad(new BigDecimal(50));
 			bus.setTipo(BusType.T);
@@ -96,7 +98,13 @@ public class Application {
 			ruta.setHoraInicio(new BigDecimal(1));
 			ruta.setHoraFin(new BigDecimal(1000));
 			rutaRepository.save(ruta);
-			*/
+			
+			
+			Tmio1Sitio sitio = new Tmio1Sitio();
+			sitio.setNombre("San Antonio");
+			sitio.setDescripcion("Barrio antiguo catalogado como patrimonio");
+			sitioRepository.save(sitio);
+			
 		};
 	}
 }

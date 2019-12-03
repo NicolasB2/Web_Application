@@ -15,8 +15,8 @@ public class SitioService {
 	@Autowired
 	private SitiosDao repository;
 	
-	public Tmio1Sitio save(Tmio1Sitio sitio) {
-		repository.save(sitio);
+	public Tmio1Sitio save(Tmio1Sitio sitio) throws Exception {
+			repository.save(sitio);			
 		return sitio;
 	}
 	

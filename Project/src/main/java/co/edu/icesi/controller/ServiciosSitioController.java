@@ -26,9 +26,9 @@ public class ServiciosSitioController {
 
 	private DelegateServiciosSitio delegateServiciosSitio;
 	private	DelegateBus delegateBus;
-	private DelegateSitio delegateSitio;
-	private DelegateConductor delegateConductor;
 	private DelegateRuta delegateRuta;
+	private DelegateConductor delegateConductor;
+	private DelegateSitio delegateSitio;
 	
 	
 	@Autowired
@@ -36,13 +36,13 @@ public class ServiciosSitioController {
 		
 		this.delegateServiciosSitio = delegateServiciosSitio;
 		this.delegateBus = delegateBus;
-		this.delegateConductor = delegateConductor;
 		this.delegateRuta = delegateRuta;
+		this.delegateConductor = delegateConductor;
 		this.delegateSitio = delegateSitio;
 	}
 	
-	@RequestMapping(value = "/servicios", method = RequestMethod.GET)
-	public String serviciosSitio(Model model) {
+	@RequestMapping(value = "/serviciosSitios", method = RequestMethod.GET)
+	public String serviciosSitios(Model model) {
 		model.addAttribute("serviciosSitios", delegateServiciosSitio.getTmioServiciosSitios());
 		return "serviciosSitios/index";
 	}
@@ -108,6 +108,7 @@ public class ServiciosSitioController {
 		model.addAttribute("conductores", delegateConductor.getTmioConductores());
 		model.addAttribute("rutas", delegateRuta.getTmioRutas());
 		model.addAttribute("sitios", delegateSitio.getTmioSitios());
+		
 		model.addAttribute("tmio1ServiciosSitio", servicio);
 		return "serviciosSitios/update-serviciosSitio";	
 	}
