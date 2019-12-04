@@ -57,12 +57,13 @@ public class DelegateSitio implements IDelegateSitio {
 
 	@Override
 	public void update(Tmio1Sitio tmio1Sitio) {
-		restTemplate.put(SERVER + "api/sitios" , tmio1Sitio);
+		restTemplate.put(SERVER + "sitios" , tmio1Sitio);
 	}
 	
 	@Override
 	public void eliminarS(Long id) {
 		Map<String, Long> parametros = new HashMap<String, Long>();
+		System.out.println("Hello Delegate");
 		parametros.put("id", id);
 		restTemplate.delete(SERVER + "sitios/" + id);
 	}

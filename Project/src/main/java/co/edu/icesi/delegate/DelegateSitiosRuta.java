@@ -1,7 +1,9 @@
 package co.edu.icesi.delegate;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -51,6 +53,10 @@ public class DelegateSitiosRuta implements IDelegateSitioRuta {
 	public Tmio1SitiosRuta getTmioSitiosRuta(Tmio1SitiosRutaPK id) {
 		Tmio1SitiosRuta sitioRuta = restTemplate.getForObject(SERVER + "sitiosRutas/" + id , Tmio1SitiosRuta.class);
 		return sitioRuta;
+	}
+
+	public void delTmioSitio(int id) {
+		restTemplate.delete(SERVER + "sitiosRutas/" + id);
 	}
 
 	

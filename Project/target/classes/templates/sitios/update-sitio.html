@@ -19,7 +19,7 @@
 	<h2 class="mb-5">Actualizar Sitio</h2>
 		<div class="row">
 			<div class="col-md-6">
-				<form action="#" th:action="@{/sitios/update-sitio/}" th:object="${tmio1Sitio}"
+				<form action="#" th:action="@{/sitios/update-sitio/{id}(id=${tmio1Sitio.id})}" th:object="${tmio1Sitio}"
 					method="post">
 					<div class="row">
 											

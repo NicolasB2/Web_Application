@@ -42,8 +42,12 @@ public class RestControllerSitio implements IRestControllerSitio {
 	}
 	
 	@PutMapping("api/sitios")
-	public Tmio1Sitio update(@RequestBody Tmio1Sitio sitio) {
-		return sitioService.update(sitio);
+	public void update(@RequestBody Tmio1Sitio sitio) throws Exception {
+		Tmio1Sitio oldSitio = sitioService.findById(sitio.getId());
+		System.out.println(sitio.getId());
+		oldSitio.setDescripcion(sitio.getDescripcion());
+		oldSitio.setNombre(sitio.getNombre());
+		sitioService.save(oldSitio);
 	}
 	
 	

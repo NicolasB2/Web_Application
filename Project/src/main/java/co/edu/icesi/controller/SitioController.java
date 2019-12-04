@@ -69,25 +69,24 @@ public class SitioController {
 
 	@GetMapping("/sitios/update-sitio/{id}")
 	public String showUpdateApps(@PathVariable("id") long id, Model model) {
-
 		Tmio1Sitio tmio1Sitio = delegateSitio.getTmioSitio(id);
-		model.addAttribute("tmio1Sitio", tmio1Sitio);		
+		model.addAttribute("tmio1Sitio", tmio1Sitio);
+		System.out.println(tmio1Sitio.getId());
 		return "sitios/update-sitio";
 	}
 
 	@PostMapping("/sitios/update-sitio/{id}")
-	public String updateApp(@PathVariable("id") long id, @RequestParam(value = "action", required = true) String action,
-			@Valid Tmio1Sitio tmio1Sitio, BindingResult bindingResult, Model model) {
-
+	public String updateApp( @RequestParam(value = "action", required = true) String action,
+			@ModelAttribute Tmio1Sitio tmio1Sitio, BindingResult bindingResult, Model model) {
+		
+		System.out.println("-----");
 		if (!action.equals("Cancel")) {
 			if (bindingResult.hasErrors()) {
-				
-				
 				return "sitios/update-sitio";
 			} else {
 				try {
+					System.out.println(tmio1Sitio.getId());
 					delegateSitio.update(tmio1Sitio);
-					System.out.println("Entro UPDATE SITIOCONTROLLER");
 				} catch (Exception e) {
 					e.printStackTrace();
 					System.out.println(bindingResult.getAllErrors().get(0));

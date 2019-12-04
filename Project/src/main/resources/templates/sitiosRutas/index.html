@@ -43,10 +43,10 @@
 								<td th:text="${sitio.tmio1Sitio1.nombre}"></td>
 								
 								 
-								<td><a th:href="@{/sitiosRutas/update-sitiosRuta/{id}(id=${sitio.id})}"
+								<td><a th:href="@{/sitiosRutas/update-sitiosRuta/{id_hash}(id_hash=${sitio.id_hash})}"
 									class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
 
-								<td><a th:href="@{/sitiosRutas/del/{id}(id=${sitio.id})}"
+								<td><a th:href="@{/sitiosRutas/del-sitioRuta/{id_hash}(id_hash=${sitio.id_hash})}"
 									class="btn btn-primary"><i class="fas fa-user-times ml-2"> </i></a></td>
 								 
 

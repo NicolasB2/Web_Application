@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -81,7 +82,12 @@ public class SitiosRutaController {
 		}
 
 		return "redirect:/sitiosRutas";
-
+	}
+	
+	@GetMapping("sitiosRutas/del-sitioRuta/{id_hash}")
+	public String eliminarS(@PathVariable ("id_hash") Integer id_hash, Model model) {
+		delegateSitiosRuta.delTmioSitio(id_hash);
+		return "redirect:/sitiosRutas";
 	}
 
 }
