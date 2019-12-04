@@ -53,9 +53,9 @@ public class Tmio1Servicio implements Serializable {
 	@JoinColumn(name="id_ruta", insertable=false, updatable=false)
 	private Tmio1Ruta tmio1Ruta;
 
-	public Integer idR;
-	public Integer idB;
-	public String idC;
+	private Integer idR;
+	private Integer idB;
+	private String idC;
 	
 	public Tmio1Servicio() {
 	}

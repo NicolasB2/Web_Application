@@ -78,6 +78,7 @@ public class ServicioController {
 			} else
 				
 				try {
+					System.out.println("Hello Servicio controller");
 					tmio1Servicio.setTmio1Bus(delegateBus.getTmioBus(tmio1Servicio.getIdBus()));
 					tmio1Servicio.setTmio1Conductore(delegateConductor.getTmioCondutor(tmio1Servicio.getIdConductor()));
 					tmio1Servicio.setTmio1Ruta(delegateRuta.getTmioRuta(tmio1Servicio.getIdRuta()));

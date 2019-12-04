@@ -45,8 +45,8 @@
 						<div class="form-group col-md-6">
 							<label for="idB" class="col-form-label">Bus</label>
 							 <select id="idB"
-								class="form-control-range" th:field="*{idB}">
-								<option th:each="bs : ${buses}" th:value="${bs.id}"
+								class="form-control-range" th:field="*{tmio1Bus}">
+								<option th:each="bs:${buses}" th:value="${bs.id}"
 									class="form-control" th:text="${bs.placa}"
 									th:selected="${tmio1Servicio.idB=bs.id}"></option>
 							</select>
@@ -55,8 +55,8 @@
 						<div class="form-group col-md-6">
 							<label for="idC" class="col-form-label">Conductor</label> 
 							<select id="idC"
-								class="form-control-range" th:field="*{idC}">
-								<option th:each="cn : ${conductores}" th:value="${cn.cedula}"
+								class="form-control-range" th:field="*{tmio1Conductore}">
+								<option th:each="cn:${conductores}" th:value="${cn.cedula}"
 									class="form-control" th:text="${cn.cedula}"
 									th:selected="${tmio1Servicio.idC=cn.cedula}"></option>
 							</select>
@@ -65,8 +65,8 @@
 						<div class="form-group col-md-6">
 							<label for="idR" class="col-form-label">Ruta</label>
 							 <select id="idR"
-								class="form-control-range" th:field="*{idR}">
-								<option th:each="rt : ${rutas}" th:value="${rt.id}"
+								class="form-control-range" th:field="*{tmio1Ruta}">
+								<option th:each="rt:${rutas}" th:value="${rt.id}"
 									class="form-control" th:text="${rt.numero}"
 									th:selected="${tmio1Servicio.idR=rt.id}"></option>
 							</select>
