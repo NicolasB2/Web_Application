@@ -41,21 +41,22 @@ public class Tmio1Servicio implements Serializable {
 	//bi-directional many-to-one association to Tmio1Bus
 	@ManyToOne
 	@JoinColumn(name="id_bus", insertable=false, updatable=false)
-	@NotNull
 	private Tmio1Bus tmio1Bus;
 
 	//bi-directional many-to-one association to Tmio1Conductore
 	@ManyToOne
 	@JoinColumn(name="cedula_conductor", insertable=false, updatable=false)
-	@NotNull
 	private Tmio1Conductore tmio1Conductore;
 
 	//bi-directional many-to-one association to Tmio1Ruta
 	@ManyToOne
 	@JoinColumn(name="id_ruta", insertable=false, updatable=false)
-	@NotNull
 	private Tmio1Ruta tmio1Ruta;
 
+	public Integer idR;
+	public Integer idB;
+	public String idC;
+	
 	public Tmio1Servicio() {
 	}
 
@@ -114,5 +115,31 @@ public class Tmio1Servicio implements Serializable {
 	public void setId_hash(Integer id_hash) {
 		this.id_hash = id_hash;
 	}
+
+	public Integer getIdRuta() {
+		return idR;
+	}
+
+	public void setIdRuta(Integer idRuta) {
+		this.idR = idRuta;
+	}
+
+	public Integer getIdBus() {
+		return idB;
+	}
+
+	public void setIdBus(Integer idBus) {
+		this.idB = idBus;
+	}
+
+	public String getIdConductor() {
+		return idC;
+	}
+
+	public void setIdConductor(String idConductor) {
+		this.idC = idConductor;
+	}
+	
+	
 
 }

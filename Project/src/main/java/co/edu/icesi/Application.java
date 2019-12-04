@@ -1,7 +1,6 @@
 package co.edu.icesi;
 
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 import org.springframework.boot.CommandLineRunner;
@@ -14,12 +13,19 @@ import co.edu.icesi.dao.IBusesDao;
 import co.edu.icesi.dao.IConductoresDao;
 import co.edu.icesi.dao.IRutasDao;
 import co.edu.icesi.dao.ISitiosDao;
+import co.edu.icesi.dao.ISitiosRutasDao;
 import co.edu.icesi.dao.IUserRepository;
 import co.edu.icesi.model.BusType;
 import co.edu.icesi.model.Tmio1Bus;
 import co.edu.icesi.model.Tmio1Conductore;
 import co.edu.icesi.model.Tmio1Ruta;
+import co.edu.icesi.model.Tmio1Servicio;
+import co.edu.icesi.model.Tmio1ServicioPK;
+import co.edu.icesi.model.Tmio1ServiciosSitio;
+import co.edu.icesi.model.Tmio1ServiciosSitioPK;
 import co.edu.icesi.model.Tmio1Sitio;
+import co.edu.icesi.model.Tmio1SitiosRuta;
+import co.edu.icesi.model.Tmio1SitiosRutaPK;
 import co.edu.icesi.model.UserApp;
 import co.edu.icesi.model.UserType;
 
@@ -32,7 +38,7 @@ public class Application {
 
 	@Bean
 	public CommandLineRunner demo(IUserRepository userRepository, IBusesDao busRepository, IConductoresDao conductorRepository,
-			IRutasDao rutaRepository, ISitiosDao sitioRepository) {
+			IRutasDao rutaRepository, ISitiosDao sitioRepository, ISitiosRutasDao sitiosRutaRepository) {
 		return (args) -> {
 			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	        
@@ -104,6 +110,27 @@ public class Application {
 			sitio.setNombre("San Antonio");
 			sitio.setDescripcion("Barrio antiguo catalogado como patrimonio");
 			sitioRepository.save(sitio);
+			
+			Tmio1Sitio sitio1 = new Tmio1Sitio();
+			sitio1.setNombre("Pampalinda");
+			sitio1.setDescripcion("Barrio nuevo");
+			sitioRepository.save(sitio1);
+			
+			
+			//Crear Sitios-Rutas
+			/*
+			Tmio1SitiosRutaPK pkSitiosRuta = new Tmio1SitiosRutaPK();
+			pkSitiosRuta.setIdRuta(ruta.getId());
+			pkSitiosRuta.setIdSitio((int) sitio.getId());
+			
+			Tmio1SitiosRuta sitioRuta = new Tmio1SitiosRuta();
+			sitioRuta.setId(pkSitiosRuta);
+			sitioRuta.setTmio1Ruta1(ruta);
+			sitioRuta.setTmio1Sitio1(sitio);
+			
+			sitiosRutaRepository.save(sitioRuta);
+			*/
+			
 			
 		};
 	}

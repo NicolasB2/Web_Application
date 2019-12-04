@@ -17,6 +17,8 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /**
  * The persistent class for the tmio1_conductores database table.
@@ -49,10 +51,12 @@ public class Tmio1Conductore implements Serializable {
 	private LocalDate fechaNacimiento;
 
 	//bi-directional many-to-one association to Tmio1Servicio
+	@JsonIgnore
 	@OneToMany(mappedBy="tmio1Conductore")
 	private List<Tmio1Servicio> tmio1Servicios;
 
 	//bi-directional many-to-one association to Tmio1ServiciosSitio
+	@JsonIgnore
 	@OneToMany(mappedBy="tmio1Conductore")
 	private List<Tmio1ServiciosSitio> tmio1ServiciosSitios;
 

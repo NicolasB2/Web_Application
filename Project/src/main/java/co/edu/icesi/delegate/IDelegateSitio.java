@@ -11,5 +11,9 @@ public interface IDelegateSitio {
 	public void delTmioSitio(long id);
 
 	public Tmio1Sitio getTmioSitio(long id);
-
+	
+	public void update(Tmio1Sitio tmio1Sitio);
+	
+	public void eliminarS(Long id);
+	
 }

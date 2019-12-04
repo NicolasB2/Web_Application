@@ -19,6 +19,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /**
  * The persistent class for the tmio1_rutas database table.
@@ -69,20 +71,19 @@ public class Tmio1Ruta implements Serializable {
 
 
 	//bi-directional many-to-one association to Tmio1Servicio
+	@JsonIgnore
 	@OneToMany(mappedBy="tmio1Ruta")
 	private List<Tmio1Servicio> tmio1Servicios;
 
 	//bi-directional many-to-one association to Tmio1ServiciosSitio
+	@JsonIgnore
 	@OneToMany(mappedBy="tmio1Ruta")
 	private List<Tmio1ServiciosSitio> tmio1ServiciosSitios;
 
 	//bi-directional many-to-one association to Tmio1SitiosRuta
+	@JsonIgnore
 	@OneToMany(mappedBy="tmio1Ruta1")
 	private List<Tmio1SitiosRuta> tmio1SitiosRutas1;
-
-	//bi-directional many-to-one association to Tmio1SitiosRuta
-	@OneToMany(mappedBy="tmio1Ruta2")
-	private List<Tmio1SitiosRuta> tmio1SitiosRutas2;
 
 	public Tmio1Ruta() {
 	}
@@ -217,26 +218,6 @@ public class Tmio1Ruta implements Serializable {
 		return tmio1SitiosRutas1;
 	}
 
-	public List<Tmio1SitiosRuta> getTmio1SitiosRutas2() {
-		return this.tmio1SitiosRutas2;
-	}
 
-	public void setTmio1SitiosRutas2(List<Tmio1SitiosRuta> tmio1SitiosRutas2) {
-		this.tmio1SitiosRutas2 = tmio1SitiosRutas2;
-	}
-
-	public Tmio1SitiosRuta addTmio1SitiosRutas2(Tmio1SitiosRuta tmio1SitiosRutas2) {
-		getTmio1SitiosRutas2().add(tmio1SitiosRutas2);
-		tmio1SitiosRutas2.setTmio1Ruta2(this);
-
-		return tmio1SitiosRutas2;
-	}
-
-	public Tmio1SitiosRuta removeTmio1SitiosRutas2(Tmio1SitiosRuta tmio1SitiosRutas2) {
-		getTmio1SitiosRutas2().remove(tmio1SitiosRutas2);
-		tmio1SitiosRutas2.setTmio1Ruta2(null);
-
-		return tmio1SitiosRutas2;
-	}
 
 }

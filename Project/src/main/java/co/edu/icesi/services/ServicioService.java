@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,7 @@ public class ServicioService {
 	@Autowired
 	private ServiciosDao repository;
 
+	@Transactional
 	public Tmio1Servicio save(Tmio1Servicio servicio) throws BusNullException, ConductorNullException,
 			RutaNullException, FechasNoConsistentesException, ServicioNullException {
 

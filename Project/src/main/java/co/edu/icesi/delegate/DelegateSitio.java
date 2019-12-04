@@ -1,7 +1,11 @@
 package co.edu.icesi.delegate;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -51,4 +55,16 @@ public class DelegateSitio implements IDelegateSitio {
 		return restTemplate.getForObject( SERVER + "sitios/" + id, Tmio1Sitio.class);
 	}
 
+	@Override
+	public void update(Tmio1Sitio tmio1Sitio) {
+		restTemplate.put(SERVER + "api/sitios" , tmio1Sitio);
+	}
+	
+	@Override
+	public void eliminarS(Long id) {
+		Map<String, Long> parametros = new HashMap<String, Long>();
+		parametros.put("id", id);
+		restTemplate.delete(SERVER + "sitios/" + id);
+	}
+	
 }

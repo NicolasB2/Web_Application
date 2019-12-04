@@ -78,6 +78,9 @@ public class ServicioController {
 			} else
 				
 				try {
+					tmio1Servicio.setTmio1Bus(delegateBus.getTmioBus(tmio1Servicio.getIdBus()));
+					tmio1Servicio.setTmio1Conductore(delegateConductor.getTmioCondutor(tmio1Servicio.getIdConductor()));
+					tmio1Servicio.setTmio1Ruta(delegateRuta.getTmioRuta(tmio1Servicio.getIdRuta()));
 					delegateService.addTmioServicio(tmio1Servicio);
 				} catch (Exception  e) {
 					e.printStackTrace();

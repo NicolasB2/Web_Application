@@ -20,6 +20,7 @@ public class Tmio1SitiosRutaPK implements Serializable {
 
 	public Tmio1SitiosRutaPK() {
 	}
+	
 	public Integer getIdSitio() {
 		return this.idSitio;
 	}

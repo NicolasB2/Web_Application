@@ -3,6 +3,8 @@ package co.edu.icesi.services;
 import java.math.BigDecimal;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,7 @@ public class RutaService {
 	@Autowired
 	private RutasDao repository;
 
+	@Transactional
 	public Tmio1Ruta save(Tmio1Ruta ruta)
 			throws RutaNullException, FechasNoConsistentesException, HorasNoConsistentesException, FechaNullException,
 			HoraNullException, FechaInvalidaException, HoraInvalidaException {

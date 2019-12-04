@@ -2,6 +2,7 @@ package co.edu.icesi.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 
 /**
@@ -17,25 +18,24 @@ public class Tmio1SitiosRuta implements Serializable {
 	@EmbeddedId
 	private Tmio1SitiosRutaPK id;
 
+	private Integer idruta;
+	
+	private Integer idsitio;
+	
+	private Integer id_hash;
+
 	//bi-directional many-to-one association to Tmio1Ruta
 	@ManyToOne
 	@JoinColumn(name="id_ruta", insertable=false, updatable=false)
 	private Tmio1Ruta tmio1Ruta1;
 
-	//bi-directional many-to-one association to Tmio1Ruta
-	@ManyToOne
-	@JoinColumn(name="id_sitio", insertable=false, updatable=false)
-	private Tmio1Ruta tmio1Ruta2;
+	
 
 	//bi-directional many-to-one association to Tmio1Sitio
 	@ManyToOne
 	@JoinColumn(name="id_sitio", insertable=false, updatable=false)
 	private Tmio1Sitio tmio1Sitio1;
 
-	//bi-directional many-to-one association to Tmio1Sitio
-	@ManyToOne
-	@JoinColumn(name="id_sitio", insertable=false, updatable=false)
-	private Tmio1Sitio tmio1Sitio2;
 
 	public Tmio1SitiosRuta() {
 	}
@@ -56,13 +56,6 @@ public class Tmio1SitiosRuta implements Serializable {
 		this.tmio1Ruta1 = tmio1Ruta1;
 	}
 
-	public Tmio1Ruta getTmio1Ruta2() {
-		return this.tmio1Ruta2;
-	}
-
-	public void setTmio1Ruta2(Tmio1Ruta tmio1Ruta2) {
-		this.tmio1Ruta2 = tmio1Ruta2;
-	}
 
 	public Tmio1Sitio getTmio1Sitio1() {
 		return this.tmio1Sitio1;
@@ -72,12 +65,30 @@ public class Tmio1SitiosRuta implements Serializable {
 		this.tmio1Sitio1 = tmio1Sitio1;
 	}
 
-	public Tmio1Sitio getTmio1Sitio2() {
-		return this.tmio1Sitio2;
+	public Integer getId_hash() {
+		return id_hash;
 	}
 
-	public void setTmio1Sitio2(Tmio1Sitio tmio1Sitio2) {
-		this.tmio1Sitio2 = tmio1Sitio2;
+	public void setId_hash(Integer id_hash) {
+		this.id_hash = id_hash;
 	}
 
+	public Integer getIdruta() {
+		return idruta;
+	}
+
+	public void setIdruta(Integer idruta) {
+		this.idruta = idruta;
+	}
+
+	public Integer getIdsitio() {
+		return idsitio;
+	}
+
+	public void setIdsitio(Integer idsitio) {
+		this.idsitio = idsitio;
+	}
+
+	
+	
 }

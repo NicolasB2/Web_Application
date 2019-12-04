@@ -29,6 +29,8 @@
 								<th>Id</th>
 								<th>Nombre</th>
 								<th>Descripcion</th>
+								<th>Editar</th>
+								<th>Eliminar</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -36,6 +38,14 @@
 								<td th:text="${sitio.id}"></td>
 								<td th:text="${sitio.nombre}"></td>
 								<td th:text="${sitio.descripcion}"></td>
+								
+								<td><a th:href="@{/sitios/update-sitio/{id}(id=${sitio.id})}"
+								class="btn btn-primary"><i class="fas fa-pen-square ml-2"></i></a></td>
+								
+								<td><a th:href="@{/sitios/delSitio/{id}(id=${sitio.id})}"
+								class="btn btn-primary"><i class="fas fa-trash-alt"></i></a></td>
+								 
+							
 							</tr>
 						</tbody>
 					</table>

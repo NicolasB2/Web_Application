@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /**
  * The persistent class for the tmio1_buses database table.
@@ -48,10 +50,12 @@ public class Tmio1Bus implements Serializable {
 	private BusType tipo;
 
 	//bi-directional many-to-one association to Tmio1Servicio
+	@JsonIgnore
 	@OneToMany(mappedBy="tmio1Bus")
 	private List<Tmio1Servicio> tmio1Servicios;
 
 	//bi-directional many-to-one association to Tmio1ServiciosSitio
+	@JsonIgnore
 	@OneToMany(mappedBy="tmio1Bus")
 	private List<Tmio1ServiciosSitio> tmio1ServiciosSitios;
 

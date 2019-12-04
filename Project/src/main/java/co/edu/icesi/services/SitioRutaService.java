@@ -1,8 +1,12 @@
 package co.edu.icesi.services;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.edu.icesi.dao.RutasDao;
+import co.edu.icesi.dao.SitiosDao;
 import co.edu.icesi.dao.SitiosRutasDao;
 import co.edu.icesi.model.Tmio1Bus;
 import co.edu.icesi.model.Tmio1SitiosRuta;
@@ -14,9 +18,21 @@ public class SitioRutaService {
 	@Autowired
 	private SitiosRutasDao repository;
 	
-	public Tmio1SitiosRuta save(Tmio1SitiosRuta sitiosRuta) throws Exception{
-		repository.save(sitiosRuta);
-		return sitiosRuta;
+	@Transactional
+	public Tmio1SitiosRuta save(Tmio1SitiosRuta tmio1SitioRuta) throws Exception{
+		
+		Tmio1SitiosRutaPK pk = new Tmio1SitiosRutaPK();
+		int x = tmio1SitioRuta.getIdruta();
+		int y = tmio1SitioRuta.getIdsitio();
+		
+		pk.setIdRuta(x);
+		pk.setIdSitio(y);
+		
+		tmio1SitioRuta.setId(pk);
+		tmio1SitioRuta.setId_hash(pk.hashCode());
+		
+		repository.save(tmio1SitioRuta);
+		return tmio1SitioRuta;
 	}
 	
 	public void setRepository(SitiosRutasDao repository){

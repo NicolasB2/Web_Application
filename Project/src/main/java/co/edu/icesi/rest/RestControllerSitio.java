@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,9 +37,15 @@ public class RestControllerSitio implements IRestControllerSitio {
 	}
 
 	@DeleteMapping("api/sitios/{id}")
-	public Tmio1Sitio delSitio(@PathVariable long id) {
+	public Tmio1Sitio delSitio(@PathVariable ("id") long id) {
 		return sitioService.deleted(sitioService.findById(id));
 	}
+	
+	@PutMapping("api/sitios")
+	public Tmio1Sitio update(@RequestBody Tmio1Sitio sitio) {
+		return sitioService.update(sitio);
+	}
+	
 	
 	
 	

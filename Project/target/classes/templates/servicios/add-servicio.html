@@ -14,6 +14,7 @@
 	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="../css/shards.min.css">
+
 </head>
 <body>
 	<div class="container my-5">
@@ -42,29 +43,32 @@
 						</div>
 						
 						<div class="form-group col-md-6">
-							<label for="tmio1Bus" class="col-form-label">Bus</label> <select
-								class="form-control-range" th:field="*{tmio1Bus}">
+							<label for="idB" class="col-form-label">Bus</label>
+							 <select id="idB"
+								class="form-control-range" th:field="*{idB}">
 								<option th:each="bs : ${buses}" th:value="${bs.id}"
 									class="form-control" th:text="${bs.placa}"
-									th:selected="${tmio1Servicio.tmio1Bus=bs}"></option>
+									th:selected="${tmio1Servicio.idB=bs.id}"></option>
 							</select>
 						</div>
 						
 						<div class="form-group col-md-6">
-							<label for="tmio1Conductore" class="col-form-label">Conductor</label> <select
-								class="form-control-range" th:field="*{tmio1Conductore}">
+							<label for="idC" class="col-form-label">Conductor</label> 
+							<select id="idC"
+								class="form-control-range" th:field="*{idC}">
 								<option th:each="cn : ${conductores}" th:value="${cn.cedula}"
 									class="form-control" th:text="${cn.cedula}"
-									th:selected="${tmio1Servicio.tmio1Conductore=cn}"></option>
+									th:selected="${tmio1Servicio.idC=cn.cedula}"></option>
 							</select>
 						</div>
 						
 						<div class="form-group col-md-6">
-							<label for="tmio1Ruta" class="col-form-label">Ruta</label> <select
-								class="form-control-range" th:field="*{tmio1Ruta}">
+							<label for="idR" class="col-form-label">Ruta</label>
+							 <select id="idR"
+								class="form-control-range" th:field="*{idR}">
 								<option th:each="rt : ${rutas}" th:value="${rt.id}"
 									class="form-control" th:text="${rt.numero}"
-									th:selected="${tmio1Servicio.tmio1Ruta=rt}"></option>
+									th:selected="${tmio1Servicio.idR=rt.id}"></option>
 							</select>
 						</div>
 						
